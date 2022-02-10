@@ -54,7 +54,7 @@
 [ext_resource path="res://png/Dead (6).png" type="Texture" id=52]
 [ext_resource path="res://png/Dead (1).png" type="Texture" id=53]
 [ext_resource path="res://Player/Player.gd" type="Script" id=54]
-[ext_resource path="res://pngtiles/BG/BG.png" type="Texture" id=55]
+[ext_resource path="res://pngtiles/BG/bg_layer1.png" type="Texture" id=55]
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
@@ -93,7 +93,7 @@ animations = [ {
 extents = Vector2( 94.5, 118 )
 
 [node name="Player" type="KinematicBody2D"]
-position = Vector2( 510, 300 )
+position = Vector2( 246, 616 )
 script = ExtResource( 54 )
 __meta__ = {
 "_edit_group_": true
@@ -104,27 +104,21 @@ position = Vector2( -109.75, -138.75 )
 scale = Vector2( 0.671898, 0.512302 )
 frames = SubResource( 3 )
 animation = "run"
-frame = 7
+frame = 6
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -69.5, -145 )
+position = Vector2( -73, -153 )
 shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 1000, 0 )
 current = true
 zoom = Vector2( 2.5, 2.5 )
-limit_left = 0
-limit_smoothed = true
-smoothing_enabled = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D"]
-scroll_ignore_camera_zoom = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
-motion_offset = Vector2( 0, -50 )
-motion_mirroring = Vector2( 1000, 750 )
+motion_mirroring = Vector2( 2048, 2048 )
 
 [node name="TextureRect" type="TextureRect" parent="Camera2D/ParallaxBackground/ParallaxLayer"]
 margin_right = 40.0
