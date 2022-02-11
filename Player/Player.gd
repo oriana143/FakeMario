@@ -2,10 +2,16 @@ extends KinematicBody2D
 
 var motion = Vector2(0,0)
 
+
+
 const SPEED = 1300
 const GRAVITY = 300
 const UP = Vector2(0,-1)
 const JUMP_SPEED = 5000
+const WORLD_LIMIT = 650
+const BOOST_MULTIPLIER = 1.5
+
+
 
 func _physics_process(delta):
 	apply_gravity()
@@ -15,7 +21,9 @@ func _physics_process(delta):
 	move_and_slide(motion, UP)
 
 func apply_gravity():
-	if is_on_floor():
+	if position.y > WORLD_LIMIT:
+		get_tree().call_group("GameState", "end_game")
+	if is_on_floor() and motion.y >0:
 		motion.y = 0
 	elif is_on_ceiling():
 		motion.y = 1
@@ -25,6 +33,7 @@ func apply_gravity():
 func jump():
 	if Input.is_action_pressed("jump") and is_on_floor():
 		motion.y = -JUMP_SPEED
+		$Jump.play()
 		
 func move():
 	if Input.is_action_pressed("left") and not Input.is_action_pressed(("rigth")):
@@ -49,3 +58,25 @@ func animate():
 	
 	
 	
+func hurt():
+	position.y -= 1
+	yield(get_tree(), "idle_frame")
+	motion.y = -JUMP_SPEED
+	$Hurt.play()
+
+	
+func boost():
+	position.y -= 1
+	yield(get_tree(), "idle_frame")
+	motion.y = -JUMP_SPEED * BOOST_MULTIPLIER
+	
+func _process(delta):
+	if $RayCast2D.is_colliding():
+		fire()
+		
+func fire():
+	$RayCast2D.add_child(load("res://NPC/Lightning.tscn").instance())
+
+
+
+

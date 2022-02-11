@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/mvrasseli_play_the_game.mp3-216ead230c2ecff812cc873a67319ebb.mp3str"
+
+[deps]
+
+source_file="res://PNG1/Sound/mvrasseli_play_the_game.mp3"
+dest_files=[ "res://.import/mvrasseli_play_the_game.mp3-216ead230c2ecff812cc873a67319ebb.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
